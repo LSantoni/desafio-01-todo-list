@@ -1,10 +1,19 @@
-import { useState } from 'react'
+import { Header } from './components/Header'
+import { NewTask } from './components/NewTask'
 
-function App() {
+import styles from './App.module.css';
+
+import './global.css'
+
+export function App() {
 
   return (
-    <h1>To do List</h1>
+    <div>
+      <Header />
+    
+      <div className={styles.wrapper}>
+        <NewTask />
+      </div>
+    </div>
   )
 }
-
-export default App
