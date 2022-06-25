@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 5.625rem;
+  gap: 0.5rem;
+}
+
+.container input {
+  height: 3.375rem;
+  padding-left: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--gray-500);
+}
+
+.container button {
+  background: var(--blue-dark);
+  color: var(--white);
+  border: none;
+  border-radius: .5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
