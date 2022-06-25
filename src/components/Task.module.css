@@ -36,8 +36,6 @@ input[type='radio'] {
   border: 2px solid var(--blue);
   border-radius: 50%;
   outline: none;
-
-  transition: 1s;
 }
 
 input[type='radio']:hover {
@@ -49,8 +47,6 @@ input[type='radio']:checked {
   background-position: center;
   background-color: var(--purple-dark);
   border: 2px solid var(--purple-dark);
-
-  transition: 1s;
 }
 
 input[type='radio']:checked:hover {
