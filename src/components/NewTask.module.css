@@ -5,10 +5,9 @@
 }
 
 .container input {
-  height: 3.375rem;
   padding-left: 1rem;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   background: var(--gray-500);
 }
 
@@ -16,7 +15,7 @@
   background: var(--blue-dark);
   color: var(--white);
   border: none;
-  border-radius: .5rem;
+  border-radius: 8px;
 
   display: flex;
   align-items: center;
