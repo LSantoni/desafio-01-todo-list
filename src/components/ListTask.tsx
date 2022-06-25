@@ -2,8 +2,30 @@ import styles from './ListTask.module.css';
 
 import clipboard from '../assets/clipboard.svg';
 import { Task } from './Task';
+import { useState } from 'react';
+
+interface Tasks {
+  id: number;
+  completed: boolean;
+  description: string;
+}
 
 export function ListTask() {
+  const initialTasks: Tasks[] = [
+    {
+      id: 0,
+      completed: false,
+      description: 'Finalizar Desafio 01'
+    },
+    {
+      id: 1,
+      completed: true,
+      description: 'Finalizar aulas no novo módulo de React'
+    }
+  ];
+
+  const [tasks, setTasks] = useState(initialTasks);
+
   return (
     <div className={styles.container}>
       <header>
@@ -25,11 +47,15 @@ export function ListTask() {
       </section>
 
       <section>
-        <Task />
-        <Task />
-        <Task />
-        <Task />
-        <Task />
+        {tasks.map(task => {
+          return (
+            <Task
+              key={task.id}
+              completed={task.completed}
+              description={task.description}
+            />
+          )
+        })}
       </section>
     </div>
   )
