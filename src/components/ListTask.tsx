@@ -25,18 +25,41 @@ export function ListTask() {
   ];
 
   const [tasks, setTasks] = useState(initialTasks);
+  const [completedTask, setCompletedTasks] = useState(tasks.filter(task => task.completed).length)
+
+  function completeTask(taskId: number) {
+    const updatedCompleteList = tasks.filter(task => {
+      if(task.id === taskId) {
+        task.completed = true;
+      }
+
+      return task;
+    });
+    const updatedCompletedList = updatedCompleteList.filter(task => task.completed).length;
+
+    setTasks(updatedCompleteList);
+    setCompletedTasks(updatedCompletedList);
+  }
+
+  function deleteTask(taskId: number) {
+    const tasksWithoutDeletedOne = tasks.filter(task => { return task.id !== taskId});
+    const updatedCompletedList = tasksWithoutDeletedOne.filter(task => task.completed).length;
+
+    setTasks(tasksWithoutDeletedOne);
+    setCompletedTasks(updatedCompletedList);
+  }
 
   return (
     <div className={styles.container}>
       <header>
         <p>
           Tarefas criadas
-          <span>0</span> 
+          <span>{tasks.length}</span> 
         </p>
 
         <p>
           Concluídas
-          <span>0</span>
+          <span>{completedTask} de {tasks.length}</span>
         </p>
       </header>
 
@@ -51,8 +74,11 @@ export function ListTask() {
           return (
             <Task
               key={task.id}
+              id={task.id}
               completed={task.completed}
               description={task.description}
+              completeTask={completeTask}
+              deleteTask={deleteTask}
             />
           )
         })}
