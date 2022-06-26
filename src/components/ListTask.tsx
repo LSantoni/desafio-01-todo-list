@@ -26,10 +26,24 @@ export function ListTask() {
   ];
 
   const [tasks, setTasks] = useState(initialTasks);
-  const [completedTask, setCompletedTasks] = useState(tasks.filter(task => task.completed).length)
+  const [completedTask, setCompletedTasks] = useState(tasks.filter(task => task.completed).length);
+  const [newTask, setNewTask] = useState('');
 
-  function handleNewTask() {
+  function handleCreateNewTask() {
     event?.preventDefault();
+
+    const createdTask: Tasks = {
+      id: tasks.length,
+      completed: false,
+      description: newTask
+    }
+
+    setTasks([...tasks, createdTask]);
+    setNewTask('');
+  }
+
+  function handleNewTaskCahnge() {
+    setNewTask(event?.target.value);
   }
 
   function completeTask(taskId: number) {
@@ -56,8 +70,12 @@ export function ListTask() {
 
   return (
     <div>
-        <form onSubmit={handleNewTask} className={styles.containerNewTask}>
-        <input type="text" placeholder='Adicione uma nova tarefa' />
+        <form onSubmit={handleCreateNewTask} className={styles.containerNewTask}>
+        <input 
+          onChange={handleNewTaskCahnge} 
+          type="text" placeholder='Adicione uma nova tarefa'
+          value={newTask}
+        />
         <button type='submit'>
           Criar
           <PlusCircle size={16} />

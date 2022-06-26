@@ -20,7 +20,11 @@ export function Task({ id, completed, description, completeTask, deleteTask }: T
 
   return (
     <div className={styles.taskContent}>
-      <input onClick={handleCompleteTask} type="radio" checked={completed} />
+      <input 
+        onClick={handleCompleteTask} 
+        type="radio" 
+        defaultChecked={completed} 
+      />
       <p className={completed ? styles.completedTask : ""}>{description}</p>
       <button onClick={handleDeleteTask} title='Deletar task'>
         <Trash size={20} />
