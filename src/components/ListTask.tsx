@@ -2,7 +2,7 @@ import styles from './ListTask.module.css';
 
 import clipboard from '../assets/clipboard.svg';
 import { Task } from './Task';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { PlusCircle } from 'phosphor-react';
 
 interface Tasks {
@@ -31,8 +31,8 @@ export function ListTask() {
 
   const showCompletedTasks = tasks.length > 0 ? `${completedTask} de ${tasks.length}` : `${tasks.length}`;
 
-  function handleCreateNewTask() {
-    event?.preventDefault();
+  function handleCreateNewTask(event: FormEvent) {
+    event.preventDefault();
 
     const createdTask: Tasks = {
       id: tasks.length,
@@ -44,8 +44,8 @@ export function ListTask() {
     setNewTask('');
   }
 
-  function handleNewTaskCahnge() {
-    setNewTask(event?.target.value);
+  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
+    setNewTask(event.target.value);
   }
 
   function completeTask(taskId: number) {
@@ -74,7 +74,7 @@ export function ListTask() {
     <div>
         <form onSubmit={handleCreateNewTask} className={styles.containerNewTask}>
         <input 
-          onChange={handleNewTaskCahnge} 
+          onChange={handleNewTaskChange} 
           type="text" placeholder='Adicione uma nova tarefa'
           value={newTask}
         />
