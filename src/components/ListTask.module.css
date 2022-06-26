@@ -1,3 +1,44 @@
+.containerNewTask {
+  display: grid;
+  grid-template-columns: 1fr 5.625rem;
+  gap: 0.5rem;
+  height: 3.375rem;
+  margin-bottom: 4rem;
+}
+
+.containerNewTask input[type='text'] {
+  padding-left: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--gray-500);
+  color: var(--gray-300);
+}
+
+.containerNewTask input[type='text']:focus {
+  color: var(--gray-100);
+  outline: none;
+  border: 1px solid var(--purple);
+}
+
+.containerNewTask button {
+  background: var(--blue-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  transition: 1s;
+}
+
+.containerNewTask button:hover {
+  background: var(--blue);
+}
+
 .container header {
   display: grid;
   grid-template-columns: auto auto;

@@ -3,6 +3,7 @@ import styles from './ListTask.module.css';
 import clipboard from '../assets/clipboard.svg';
 import { Task } from './Task';
 import { useState } from 'react';
+import { PlusCircle } from 'phosphor-react';
 
 interface Tasks {
   id: number;
@@ -27,6 +28,10 @@ export function ListTask() {
   const [tasks, setTasks] = useState(initialTasks);
   const [completedTask, setCompletedTasks] = useState(tasks.filter(task => task.completed).length)
 
+  function handleNewTask() {
+    event?.preventDefault();
+  }
+
   function completeTask(taskId: number) {
     const updatedCompleteList = tasks.filter(task => {
       if(task.id === taskId) {
@@ -50,39 +55,49 @@ export function ListTask() {
   }
 
   return (
-    <div className={styles.container}>
-      <header>
-        <p>
-          Tarefas criadas
-          <span>{tasks.length}</span> 
-        </p>
+    <div>
+        <form onSubmit={handleNewTask} className={styles.containerNewTask}>
+        <input type="text" placeholder='Adicione uma nova tarefa' />
+        <button type='submit'>
+          Criar
+          <PlusCircle size={16} />
+        </button>
+      </form>
+      
+      <div className={styles.container}>
+        <header>
+          <p>
+            Tarefas criadas
+            <span>{tasks.length}</span> 
+          </p>
 
-        <p>
-          Concluídas
-          <span>{completedTask} de {tasks.length}</span>
-        </p>
-      </header>
+          <p>
+            Concluídas
+            <span>{completedTask} de {tasks.length}</span>
+          </p>
+        </header>
 
-      <section className={styles.withoutTask} hidden>
-        <img src={clipboard} alt="icone de quando não tem nenhuma tarefa criada" />
-        <p>Você ainda não tem tarefas cadastradas</p>
-        <p>Crie tarefas e organize seus itens a fazer</p>
-      </section>
+        <section className={styles.withoutTask} hidden>
+          <img src={clipboard} alt="icone de quando não tem nenhuma tarefa criada" />
+          <p>Você ainda não tem tarefas cadastradas</p>
+          <p>Crie tarefas e organize seus itens a fazer</p>
+        </section>
 
-      <section>
-        {tasks.map(task => {
-          return (
-            <Task
-              key={task.id}
-              id={task.id}
-              completed={task.completed}
-              description={task.description}
-              completeTask={completeTask}
-              deleteTask={deleteTask}
-            />
-          )
-        })}
-      </section>
+        <section>
+          {tasks.map(task => {
+            return (
+              <Task
+                key={task.id}
+                id={task.id}
+                completed={task.completed}
+                description={task.description}
+                completeTask={completeTask}
+                deleteTask={deleteTask}
+              />
+            )
+          })}
+        </section>
+      </div>
     </div>
   )
 }
