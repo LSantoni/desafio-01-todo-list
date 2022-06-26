@@ -29,6 +29,8 @@ export function ListTask() {
   const [completedTask, setCompletedTasks] = useState(tasks.filter(task => task.completed).length);
   const [newTask, setNewTask] = useState('');
 
+  const showCompletedTasks = tasks.length > 0 ? `${completedTask} de ${tasks.length}` : `${tasks.length}`;
+
   function handleCreateNewTask() {
     event?.preventDefault();
 
@@ -91,7 +93,7 @@ export function ListTask() {
 
           <p>
             Concluídas
-            <span>{completedTask} de {tasks.length}</span>
+            <span>{showCompletedTasks}</span>
           </p>
         </header>
 
