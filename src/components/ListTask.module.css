@@ -74,7 +74,7 @@ section img {
   margin: 4rem auto 1rem auto;
 }
 
-section p {
+.withoutTask p {
   text-align: center;
   color: var(--gray-300);
 }
