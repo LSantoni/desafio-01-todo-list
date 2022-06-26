@@ -95,13 +95,13 @@ export function ListTask() {
           </p>
         </header>
 
-        <section className={styles.withoutTask} hidden>
+        <section className={styles.withoutTask} hidden={tasks.length > 0}>
           <img src={clipboard} alt="icone de quando não tem nenhuma tarefa criada" />
           <p>Você ainda não tem tarefas cadastradas</p>
           <p>Crie tarefas e organize seus itens a fazer</p>
         </section>
 
-        <section>
+        <section hidden={tasks.length <= 0}>
           {tasks.map(task => {
             return (
               <Task
