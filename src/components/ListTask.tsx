@@ -2,7 +2,7 @@ import styles from './ListTask.module.css';
 
 import clipboard from '../assets/clipboard.svg';
 import { Task } from './Task';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
 import { PlusCircle } from 'phosphor-react';
 
 interface Tasks {
@@ -45,7 +45,12 @@ export function ListTask() {
   }
 
   function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('');
     setNewTask(event.target.value);
+  }
+
+  function handleNewTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('Este campo é obrigatório');
   }
 
   function completeTask(taskId: number) {
@@ -77,6 +82,8 @@ export function ListTask() {
           onChange={handleNewTaskChange} 
           type="text" placeholder='Adicione uma nova tarefa'
           value={newTask}
+          onInvalid={handleNewTaskInvalid}
+          required
         />
         <button type='submit'>
           Criar
